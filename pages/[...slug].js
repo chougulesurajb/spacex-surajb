@@ -3,8 +3,8 @@ import Head from "next/head";
 
 import { App } from "../src/App";
 
-export default function Home({ data }) {
-  console.log("data", data);
+export default function Slug({ data }) {
+  console.log("datssa", data);
   return (
     <div className={""}>
       <Head>
@@ -25,9 +25,12 @@ export default function Home({ data }) {
 }
 
 // This gets called on every request
-export async function getServerSideProps() {
+export async function getServerSideProps({ param, query }) {
   // Fetch data from external API
-  const res = await fetch(`https://api.spaceXdata.com/v3/launches?limit=100`);
+  console.log('queryyear',query.year)
+  const res = await fetch(
+    `https://api.spaceXdata.com/v3/launches?limit=100&launch_year=${query.year}`
+  );
   const data = await res.json();
 
   // Pass data to the page via props
