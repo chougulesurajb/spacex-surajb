@@ -1,25 +1,32 @@
 import Head from "next/head";
 // import styles from "../styles/Home.module.css";
 
-import { App } from "../src/App";
+import { App } from "../src";
 
 export default function Home({ data }) {
-  console.log("data", data);
+  // console.log("data", data);
   return (
     <div className={""}>
       <Head>
         <title>Space X</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={""}>
-        <h1 className={""}>Space X</h1>
-      </main>
-      <App {...data} />
-      <footer className={""}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Powered by{" "}
-        </a>
-      </footer>
+      <div className="app-container app-nav">
+        <main>
+          <h1 className="app-heading">Space X Launch Programs</h1>
+        </main>
+      </div>
+      <App data={data} />
+      <div className="app-container app-footer">
+        <footer>
+          <a
+            href="https://github.com/chougulesurajb/spacex-surajb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by <strong>Surajkumar Chougule</strong>
+          </a>
+        </footer>
+      </div>
     </div>
   );
 }

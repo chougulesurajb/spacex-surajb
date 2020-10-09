@@ -1,25 +1,31 @@
 import Head from "next/head";
-// import styles from "../styles/Home.module.css";
 
-import { App } from "../src/App";
+import { App } from "../src";
 
 export default function Slug({ data }) {
-  console.log("datssa", data);
   return (
-    <div className={""}>
+    <div>
       <Head>
         <title>Space X</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={""}>
-        <h1 className={""}>Space X</h1>
-      </main>
-      <App {...data} />
-      <footer className={""}>
-        <a href="#" target="_blank" rel="noopener noreferrer">
-          Powered by{" "}
-        </a>
-      </footer>
+      <div className="app-container app-nav">
+        <main>
+          <h1 className="app-heading">Space X Launch Programs</h1>
+        </main>
+      </div>
+      <App data={data} />
+      <div className="app-container app-footer">
+        <footer>
+          <a
+            href="https://github.com/chougulesurajb/spacex-surajb"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Powered by <strong>Surajkumar Chougule</strong>
+          </a>
+        </footer>
+      </div>
     </div>
   );
 }
@@ -27,10 +33,16 @@ export default function Slug({ data }) {
 // This gets called on every request
 export async function getServerSideProps({ param, query }) {
   // Fetch data from external API
-  console.log('queryyear',query.year)
-  const res = await fetch(
-    `https://api.spaceXdata.com/v3/launches?limit=100&launch_year=${query.year}`
-  );
+
+  const url = `https://api.spaceXdata.com/v3/launches?limit=100${
+    query.year ? `&launch_year=${query.year}` : ""
+  }${query.launch ? `&launch_success=${query.launch}` : ""}${
+    query.landing && query.landing === "true"
+      ? `&land_success=${query.landing}`
+      : ""
+  }`;
+  console.log("urlurlurl", url);
+  const res = await fetch(url);
   const data = await res.json();
 
   // Pass data to the page via props
