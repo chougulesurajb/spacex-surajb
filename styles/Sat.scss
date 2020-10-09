@@ -18,8 +18,8 @@
     }
   }
 
-  &-title{
-      color: blue;
+  &-title {
+    color: blue;
   }
 
   &-detail {
@@ -31,8 +31,12 @@
     }
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 1024px) {
+    max-width: 210px;
     width: 100%;
+    margin: 0 10px 10px 10px;
+  }
+  @media screen and (max-width: 700px) {
     max-width: 280px;
     flex-direction: column;
     align-items: center;
