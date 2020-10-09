@@ -56,7 +56,7 @@ function App({ data }) {
     });
     setLanding(a);
     if (window.location.pathname === "/") {
-      router.push("/result");
+      router.replace("/result");
     }
   }, [data]);
 
