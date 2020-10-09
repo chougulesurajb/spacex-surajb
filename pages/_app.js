@@ -4,6 +4,7 @@ import '../styles/SideBar.scss'
 import '../styles/Button.scss'
 import '../styles/MainContent.scss'
 import '../styles/Sat.scss'
+import '../styles/Loader.scss'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

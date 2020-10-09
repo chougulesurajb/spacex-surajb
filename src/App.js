@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { SideBar } from "./";
 import { MainContent } from "./";
+import { Loader } from "./";
 
 function App({ data }) {
   const [years, setYears] = useState([]);
   const [launch, setLaunch] = useState([]);
   const [landing, setLanding] = useState([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     const sLaunch = ["true", "false"];
@@ -21,7 +25,7 @@ function App({ data }) {
         return e.launch_year;
       });
 
-    const uniqueYears =  y.length?[...new Set(y)]:[];
+    const uniqueYears = y.length ? [...new Set(y)] : [];
     const yData =
       !!uniqueYears.length &&
       uniqueYears.map((e) => {
@@ -51,9 +55,12 @@ function App({ data }) {
       };
     });
     setLanding(a);
+    if (window.location.pathname === "/") {
+      router.push("/result");
+    }
   }, [data]);
 
-  return (
+  return !!data && !!data.length ? (
     <div className="app">
       <SideBar
         yearsFilter={years}
@@ -62,6 +69,8 @@ function App({ data }) {
       />
       <MainContent data={data} />
     </div>
+  ) : (
+    <Loader />
   );
 }
 

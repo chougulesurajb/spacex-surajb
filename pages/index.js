@@ -3,10 +3,10 @@ import Head from "next/head";
 
 import { App } from "../src";
 
-export default function Home({ data }) {
+export default function Home() {
   // console.log("data", data);
   return (
-    <div className={""}>
+    <div>
       <Head>
         <title>Space X</title>
       </Head>
@@ -15,7 +15,7 @@ export default function Home({ data }) {
           <h1 className="app-heading">Space X Launch Programs</h1>
         </main>
       </div>
-      <App data={data} />
+      <App />
       <div className="app-container app-footer">
         <footer>
           <a
@@ -29,14 +29,4 @@ export default function Home({ data }) {
       </div>
     </div>
   );
-}
-
-// This gets called on every request
-export async function getServerSideProps() {
-  // Fetch data from external API
-  const res = await fetch(`https://api.spaceXdata.com/v3/launches?limit=100`);
-  const data = await res.json();
-
-  // Pass data to the page via props
-  return { props: { data } };
 }
