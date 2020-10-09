@@ -60,7 +60,7 @@ function App({ data }) {
     }
   }, [data]);
 
-  return !!data && !!data.length ? (
+  return window.location.pathname === "/" && !!data && !!data.length ? (
     <div className="app">
       <SideBar
         yearsFilter={years}
