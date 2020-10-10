@@ -25,9 +25,9 @@ Button.defaultProps = {
 Button.propTypes = {
   type: PropTypes.string,
   selected: PropTypes.bool,
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   click: PropTypes.func,
-  value: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default Button;

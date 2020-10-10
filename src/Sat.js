@@ -18,7 +18,7 @@ function Sat({ sat }) {
           className="sat-img"
           src={sat.links.mission_patch}
           alt={sat.mission_name}
-        ></img>
+        />
       </div>
       <h3 className="sat-title">{sat.mission_name || ""}</h3>
       <div className="sat-detail">

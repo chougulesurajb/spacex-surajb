@@ -129,7 +129,7 @@ const SideBar = ({ yearsFilter, sLaunchFilter, sLandFilter }) => {
 
 SideBar.defaultProps = {
   yearsFilter: [],
-  sLaunchFilter:[],
+  sLaunchFilter: [],
   sLandFilter: [],
 };
 

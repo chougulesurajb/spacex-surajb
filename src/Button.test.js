@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import Button from "./Button";
 
 const data = {
-  label: 2006,
+  label: "2006",
   value: 2006,
   selected: false,
   type: "y",
