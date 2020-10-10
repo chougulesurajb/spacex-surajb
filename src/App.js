@@ -61,7 +61,7 @@ function App({ data }) {
 }
 
 App.defaultProps = {
-  data: {},
+  data: [],
 };
 
 App.propTypes = {

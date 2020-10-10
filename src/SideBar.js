@@ -128,9 +128,9 @@ const SideBar = ({ yearsFilter, sLaunchFilter, sLandFilter }) => {
 };
 
 SideBar.defaultProps = {
-  yearsFilter: {},
-  sLaunchFilter: {},
-  sLandFilter: {},
+  yearsFilter: [],
+  sLaunchFilter:[],
+  sLandFilter: [],
 };
 
 SideBar.propTypes = {

@@ -15,7 +15,7 @@ function MainContent({ data }) {
 }
 
 MainContent.defaultProps = {
-  data: {},
+  data: [],
 };
 
 MainContent.propTypes = {
