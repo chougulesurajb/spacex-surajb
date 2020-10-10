@@ -2,7 +2,7 @@
   width: 200px;
   background-color: white;
   padding: 5px;
-  margin: 0 0 30px 0;
+  margin: 0 5px 0 30px;
   flex-shrink: 0;
   height: fit-content;
   position: sticky;
@@ -11,6 +11,7 @@
   &-title {
     text-align: start;
   }
+
   &-fi {
     &-headwrap {
       margin: 5px 20px;
@@ -19,9 +20,11 @@
       flex-direction: column;
       align-items: center;
     }
+
     &-head {
       font-size: 16px;
     }
+
     &-section {
       display: flex;
       justify-content: center;

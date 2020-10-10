@@ -2,27 +2,23 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function Sat({ sat }) {
-  const satImage = !!sat.links && {
-    backgroundImage: `url(${sat.links.mission_patch})`,
-  };
-
   const missionIds =
-    !!sat.mission_id &&
-    !!sat.mission_id.length
-      ?
+    !!sat.mission_id && !!sat.mission_id.length ? (
       sat.mission_id.map((mid, i) => (
         <p key={`p-${sat.launch_date_unix}${i}`}>{mid}</p>
       ))
-      : "Not available";
+    ) : (
+      <p>No Ids</p>
+    );
 
   return (
     <div className="sat">
       <div className="sat-img-wrap">
-        {!!sat.links && !!sat.links.mission_patch ? (
-          <div className="sat-img" style={satImage} />
-        ) : (
-          <div className="sat-img">Image is not available</div>
-        )}
+        <img
+          className="sat-img"
+          src={sat.links.mission_patch}
+          alt={sat.mission_name}
+        ></img>
       </div>
       <h3 className="sat-title">{sat.mission_name || ""}</h3>
       <div className="sat-detail">

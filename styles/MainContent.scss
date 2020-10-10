@@ -1,7 +1,5 @@
 .maincon {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
   flex-wrap: wrap;
   flex-grow: 1;
 
@@ -10,6 +8,7 @@
   }
 
   @media screen and (max-width: 700px) {
+    margin: 10px 0 0 0;
     flex-direction: column;
     align-items: center;
     max-width: 280px;
