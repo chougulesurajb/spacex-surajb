@@ -1,16 +1,20 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function MainContent({ sat }) {
+function Sat({ sat }) {
   const satImage = !!sat.links && {
     backgroundImage: `url(${sat.links.mission_patch})`,
   };
 
   const missionIds =
-    !!sat.mission_id && !!sat.mission_id.length
-      ? sat.mission_id.map((mid, i) => (
-          <p key={`p-${sat.launch_date_unix}${i}`}>{mid}</p>
-        ))
+    !!sat.mission_id &&
+    !!sat.mission_id.length
+      ?
+      sat.mission_id.map((mid, i) => (
+        <p key={`p-${sat.launch_date_unix}${i}`}>{mid}</p>
+      ))
       : "Not available";
+
   return (
     <div className="sat">
       <div className="sat-img-wrap">
@@ -41,4 +45,12 @@ function MainContent({ sat }) {
   );
 }
 
-export default MainContent;
+Sat.defaultProps = {
+  sat: {},
+};
+
+Sat.propTypes = {
+  sat: PropTypes.objectOf(PropTypes.any),
+};
+
+export default Sat;

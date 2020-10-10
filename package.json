@@ -5,14 +5,56 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "NODE_ENV=production node server.js"
+    "start": "NODE_ENV=production node server.js",
+    "sdev": "node server.js",
+    "test": "jest",
+    "lint": "eslint src/**/*.js"
   },
   "dependencies": {
     "next": "9.5.3",
+    "prop-types": "^15.7.2",
     "react": "16.13.1",
     "react-dom": "16.13.1"
   },
   "devDependencies": {
-    "node-sass": "^4.14.1"
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
+    "enzyme-to-json": "^3.6.1",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb": "18.2.0",
+    "eslint-plugin-import": "2.21.2",
+    "eslint-plugin-jsx-a11y": "6.3.0",
+    "eslint-plugin-react": "7.20.0",
+    "eslint-plugin-react-hooks": "4.0.0",
+    "jest": "^26.5.2",
+    "node-sass": "^4.14.1",
+    "react-test-renderer": "^16.13.1"
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/configs/setupTests.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "!src/index.js"
+    ],
+    "coverageReporters": [
+      "text"
+    ]
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "context",
+      "before",
+      "beforeEach",
+      "after",
+      "afterEach",
+      "it",
+      "expect"
+    ]
   }
 }

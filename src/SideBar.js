@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import { useRouter } from "next/router";
-import { Button } from "./";
+
+import Button from "./Button";
 
 function isEmpty(value) {
-  return value == null || value == "";
+  return value === null || value === "";
 }
 
-function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
+const SideBar = ({ yearsFilter, sLaunchFilter, sLandFilter }) => {
   const [year, setYear] = useState("");
   const [launch, setLaunch] = useState("");
   const [landing, setLanding] = useState("");
@@ -16,11 +18,22 @@ function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
 
   const router = useRouter();
 
+  // To retain old query params when page reloads
   useEffect(() => {
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const y = urlParams.get("year");
+    const lu = urlParams.get("launch");
+    const la = urlParams.get("landing");
+    if (y) setYear(y);
+    if (lu) setLaunch(lu);
+    if (la) setLanding(la);
     setYFilter(yearsFilter);
     setUFilter(sLaunchFilter);
     setAFilter(sLandFilter);
   }, [yearsFilter, sLaunchFilter, sLandFilter]);
+
+  // For redirects with new query params
   useEffect(() => {
     const makeRoute = () => {
       if (year || launch || landing) {
@@ -30,31 +43,31 @@ function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
           landing,
         };
         const copyQP = { ...queryParams };
-        for (const key in copyQP) {
-          if (isEmpty(copyQP[key])) {
-            delete copyQP[key];
+        Object.keys(copyQP).forEach((e) => {
+          if (isEmpty(copyQP[e])) {
+            delete copyQP[e];
           }
-        }
-        return `result?${new URLSearchParams(copyQP).toString()}`;
+        });
+        return `/result?${new URLSearchParams(copyQP).toString()}`;
       }
-      return "result";
+      return "/result";
     };
-    router.push(makeRoute());
+    const route = makeRoute();
+    if (router && route) {
+      router.push(route);
+    }
   }, [year, landing, launch]);
 
+  // handle click on buttons
   const handleOnClick = (filter, value) => {
-    console.log("filter, value", filter, value);
-
     switch (filter) {
       case "y":
         setYear(year === value ? "" : value);
         break;
       case "u":
-        console.log("Successful Launch", value);
         setLaunch(launch === value ? "" : value);
         break;
       case "a":
-        console.log("Successful Landing", value);
         setLanding(landing === value ? "" : value);
         break;
       default:
@@ -62,6 +75,7 @@ function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
     }
   };
 
+  // Generic filter head component
   const FilterHead = (name) => (
     <div className="sb-fi-headwrap">
       <p className="sb-fi-head">{name}</p>
@@ -72,20 +86,20 @@ function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
     <div className="sb">
       <h4 className="sb-title">Filters</h4>
       {!!yFilter.length && FilterHead("Launch Year")}
-      <div className="sb-fi-year">
+      <div className="sb-fi-section">
         {!!yFilter &&
-          yFilter.map((year) => (
+          yFilter.map((ele) => (
             <Button
-              key={`y-${year.label}`}
+              key={`y-${ele.label}`}
               type="y"
               click={handleOnClick}
-              {...year}
+              {...ele}
             />
           ))}
       </div>
 
       {!!uFilter.length && FilterHead("Successful Launch")}
-      <div className="sb-fi-year">
+      <div className="sb-fi-section">
         {!!uFilter &&
           uFilter.map((sl) => (
             <Button
@@ -98,7 +112,7 @@ function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
       </div>
 
       {!!aFilter.length && FilterHead("Successful Landing")}
-      <div className="sb-fi-year">
+      <div className="sb-fi-section">
         {!!aFilter &&
           aFilter.map((sl) => (
             <Button
@@ -111,6 +125,18 @@ function SideBar({ yearsFilter, sLaunchFilter, sLandFilter }) {
       </div>
     </div>
   );
-}
+};
+
+SideBar.defaultProps = {
+  yearsFilter: {},
+  sLaunchFilter: {},
+  sLandFilter: {},
+};
+
+SideBar.propTypes = {
+  yearsFilter: PropTypes.arrayOf(PropTypes.any),
+  sLaunchFilter: PropTypes.arrayOf(PropTypes.any),
+  sLandFilter: PropTypes.arrayOf(PropTypes.any),
+};
 
 export default SideBar;

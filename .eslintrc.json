@@ -1,0 +1,42 @@
+{
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "node": true,
+    "mocha": true,
+    "es6": true,
+    "jest": true
+  },
+  "extends": ["plugin:react/recommended", "eslint:recommended", "airbnb"],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "js": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": ["react"],
+
+  "rules": {
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
+    "react/jsx-props-no-spreading": "off",
+    "quotes": [2, "double", { "avoidEscape": true }],
+    "prettier/prettier": 0,
+    "linebreak-style": 0,
+    "operator-linebreak": 0,
+    "no-var": "error",
+    "semi": "error",
+    "indent": "error",
+    "no-multi-spaces": "error",
+    "space-in-parens": "error",
+    "no-multiple-empty-lines": "error",
+    "prefer-const": "error",
+    "no-use-before-define": "error",
+    "no-debugger": "off",
+    "no-console": 0,
+    "react-hooks/rules-of-hooks": 0,
+    "react/no-array-index-key": 0,
+    "object-curly-newline": 0
+  }
+}

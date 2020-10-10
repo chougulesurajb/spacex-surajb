@@ -1,17 +1,33 @@
 import React from "react";
+import PropTypes from "prop-types";
 
-function Button({ type, selected, label, click, value }) {
-  return (
-    <div className="fbtn-wrap">
-      <button
-        className={`fbtn-btn fbtn-btn-${selected ? "s" : "ns"}`}
-        onClick={() => click(type, value)}
-      >
-        {label}
-        {selected && <span className="fbtn-cross"> x </span>}
-      </button>
-    </div>
-  );
-}
+const Button = ({ type, selected, label, click, value }) => (
+  <div className="fbtn-wrap">
+    <button
+      type="button"
+      className={`fbtn-btn fbtn-btn-${selected ? "s" : "ns"}`}
+      onClick={() => click(type, value)}
+    >
+      {label}
+      {selected && <span className="fbtn-cross"> x </span>}
+    </button>
+  </div>
+);
+
+Button.defaultProps = {
+  type: "",
+  selected: false,
+  label: "",
+  click: () => {},
+  value: "",
+};
+
+Button.propTypes = {
+  type: PropTypes.string,
+  selected: PropTypes.bool,
+  label: PropTypes.string,
+  click: PropTypes.func,
+  value: PropTypes.string,
+};
 
 export default Button;
