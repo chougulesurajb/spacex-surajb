@@ -28,6 +28,11 @@
     }
   }
 }
+
+.orientation {
+  display: none;
+}
+
 @media screen and (max-width: 700px) {
   .app {
     flex-direction: column;
@@ -35,5 +40,21 @@
     &-heading {
       font-size: 20px;
     }
+  }
+}
+
+@media screen and (max-width: 700px) and (orientation: landscape) {
+  .orientation {
+    background-color: grey;
+    display: block;
+    z-index: 101;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 }

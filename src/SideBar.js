@@ -15,6 +15,7 @@ const SideBar = ({ yearsFilter, sLaunchFilter, sLandFilter }) => {
   const [yFilter, setYFilter] = useState(yearsFilter);
   const [uFilter, setUFilter] = useState(sLaunchFilter);
   const [aFilter, setAFilter] = useState(sLandFilter);
+  const [hasUrlPrams, setHasUrlPrams] = useState(false);
 
   const router = useRouter();
 
@@ -28,6 +29,11 @@ const SideBar = ({ yearsFilter, sLaunchFilter, sLandFilter }) => {
     if (y) setYear(y);
     if (lu) setLaunch(lu);
     if (la) setLanding(la);
+    setHasUrlPrams(true);
+  }, []);
+
+  // To retain old query params when page reloads
+  useEffect(() => {
     setYFilter(yearsFilter);
     setUFilter(sLaunchFilter);
     setAFilter(sLandFilter);
@@ -52,9 +58,12 @@ const SideBar = ({ yearsFilter, sLaunchFilter, sLandFilter }) => {
       }
       return "/result";
     };
-    const route = makeRoute();
-    if (router && route) {
-      router.push(route);
+    let route = "";
+    if (hasUrlPrams) {
+      route = makeRoute();
+      if (router && route) {
+        router.push(route);
+      }
     }
   }, [year, landing, launch]);
 

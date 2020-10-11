@@ -54,6 +54,9 @@ function App({ data }) {
         sLandFilter={landing}
       />
       <MainContent data={data} />
+      <div className="orientation">
+        <p>Please rotate your mobile. Our app works best in Portrait view</p>
+      </div>
     </div>
   ) : (
     <Loader />
