@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Space X</title>
-        <link rel="icon" href="/favicon.ico" />\
+        <link rel="icon" href="/favicon.ico" />
         <SEO />
       </Head>
       <div className="app-container app-nav">
